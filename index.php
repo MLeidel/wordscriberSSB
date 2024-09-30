@@ -1,9 +1,9 @@
 <?php
-/*
+/* idoc.db
 TABLE "documents"
-	"category"
-	"name"
-	"document"
+    "category"
+    "name"
+    "document"
 */
 extract($_POST);
 extract($_GET);
@@ -49,14 +49,14 @@ while ($row = $results->fetchArray()) {
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-	<meta charset='UTF-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel="manifest" href="manifest.json">
-	<title>wordScriber</title>
-	<script type="text/javascript" src="myJS-1.2.min.js"></script>
-  <script src="ulcase.min.js"></script>
-  <script src="JSmodal.min.js"></script>
-  <link rel="stylesheet" href="JSmodalani.css">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="manifest" href="manifest.json">
+    <title>wordScriber</title>
+    <script type="text/javascript" src="../js/myJS-1.2.min.js"></script>
+  <script src="../js/ulcase.min.js"></script>
+  <script src="../js/JSmodal.min.js"></script>
+  <link rel="stylesheet" href="../css/JSmodalani.css">
 
 <style>
   body {
@@ -79,24 +79,23 @@ while ($row = $results->fetchArray()) {
     transition: background-color 0.6s;
   }
   #CE {
-  	height: <?php echo $Opts[3]?>;
-  	background: #fff;
-  	color: <?php echo $Opts[2]?>;
-  	font: normal <?php echo $Opts[1], " $Opts[0]"?>;
-  	padding: 5px;
-  	/*width: 95%;*/
-  	border: 1px solid navy;
-  	line-height: <?php echo $Opts[4]?>;
-  	overflow: auto;
-
+    height: <?php echo $Opts[3]?>;
+    background: #fff;
+    color: <?php echo $Opts[2]?>;
+    font: normal <?php echo $Opts[1], " $Opts[0]"?>;
+    padding: 5px;
+    /*width: 95%;*/
+    border: 1px solid navy;
+    line-height: <?php echo $Opts[4]?>;
+    overflow: auto;
   }
   textarea {
-  	height: <?php echo $Opts[3]?>; /*Note: must be same as #CE*/
-  	width: 98%;
-  	background: #111;
-  	color: lightgreen;
-  	font: normal 10pt monospace;
-  	tab-size: 4;
+    height: <?php echo $Opts[3]?>; /*Note: must be same as #CE*/
+    width: 98%;
+    background: #111;
+    color: lightgreen;
+    font: normal 10pt monospace;
+    tab-size: 4;
   }
   input[type=date] {
     margin-bottom:5px;
@@ -275,6 +274,14 @@ document.addEventListener('keydown', function(event) {  // switch Def/Fin
   }
 });
 
+document.addEventListener('keydown', function(event) {  // page-break
+  if (event.altKey && event.key === 'w') {
+      event.preventDefault();
+      toggleWordWrap();
+  }
+});
+
+
 
 // GLOBAL VARS for control button functions
   var last_color = "red";
@@ -348,21 +355,21 @@ document.addEventListener('keydown', function(event) {  // page-break
   <!--    name="caldate" type="date" onchange="date_changed()" />&nbsp;&nbsp;&nbsp;-->
   <select name="list" id="SEL"
           onchange="load_document(this.options[this.selectedIndex].text)">
-  	<!-- php will write out the options -->
-  	<option disabled>Select Document</option>
+    <!-- php will write out the options -->
+    <option disabled>Select Document</option>
     <?php echo $flist ?>
   </select>
   <input type="text" name="docName" id="DOC">
 
   <div>&nbsp;
-  	<input type="radio" name="cat" id="RD" value="default"
-  	                    onclick="window.location = '?cat=d'; JS.tod('#LOAD', 'block');"
-  	                    title="Default" checked><label for="RD" title="Category">Default</label>&nbsp;
-  	<input type="radio" name="cat" id="RF" value="final"
-  	                    onclick="window.location = '?cat=f'; JS.tod('#LOAD', 'block');"
-  	                    title="Final"><label for="RF" title="Category">Final</label>&nbsp;&nbsp;&nbsp;
-  	<input type="checkbox" name="cbdel" id="CBD" value="delete"
-  	                    title="Delete"><label for="CBD" title="check and Save to delete">Delete</label>
+    <input type="radio" name="cat" id="RD" value="default"
+                        onclick="window.location = '?cat=d'; JS.tod('#LOAD', 'block');"
+                        title="Default" checked><label for="RD" title="Category">Default</label>&nbsp;
+    <input type="radio" name="cat" id="RF" value="final"
+                        onclick="window.location = '?cat=f'; JS.tod('#LOAD', 'block');"
+                        title="Final"><label for="RF" title="Category">Final</label>&nbsp;&nbsp;&nbsp;
+    <input type="checkbox" name="cbdel" id="CBD" value="delete"
+                        title="Delete"><label for="CBD" title="check and Save to delete">Delete</label>
     <span id="SAV" style=""></span>
     <span id="MSG" style=""></span><br>
   </div>
@@ -449,7 +456,7 @@ document.addEventListener('keydown', function(event) {  // page-break
 
 /*
 loStor function:
-op = 1:	set localStorage value by key
+op = 1: set localStorage value by key
 op = 2: get localStorage value by key
 op = 3: not used here
 ----------
@@ -461,15 +468,15 @@ data => category|name
 Will be preserved (idealy) between browser sessions.
 */
   function loStor(op, skey) {
-  	switch ( op ) {
-  		case 1:	// set
-  			localStorage.setItem("idoc", skey);
-  			return;
-  			break;
-  		case 2: // get
-  			return localStorage.getItem("idoc");
-  			break;
-  	}
+    switch ( op ) {
+        case 1: // set
+            localStorage.setItem("idoc", skey);
+            return;
+            break;
+        case 2: // get
+            return localStorage.getItem("idoc");
+            break;
+    }
   }
 
   // reload previous document
@@ -492,32 +499,33 @@ Will be preserved (idealy) between browser sessions.
 
   function showHelp() {
           JSmodal.open(1,`<pre>
-<b>Action Keys</b>
+<b>Action Keys</b> <i>italicized</i> means only hotkey
 Alt-/   -  Toggle spellcheck on / off
 Alt-;   -  Remove HTML formatting
-Alt-b   -  Insert Page Break
-Alt-e   -  Emojis Window
+Alt-b   -  <i>Insert Page Break</i>
+Alt-e   -  <i>Emojis Window</i>
 Alt-f   -  Insert HTML Fieldset
 Alt-l   -  Lower case
 Alt-p   -  Print
 Alt-r   -  Insert Horizontal Rule
-Alt-s   -  Toggle Default/Final
+Alt-s   -  <i>Toggle Default/Final</i>
 Alt-t   -  Insert HTML table
 Alt-u   -  Upper Case
+Alt-w   -  <i>Toggle Word Wrap</i>
 Ctrl-Alt-  Toggle Options panel
-Ctrl-a  -  Select All
+Ctrl-a  -  <i>Select All</i>
 Ctrl-b  -  Bold
-Ctrl-c  -  Copy to Clipboard
-Ctrl-d  -  Insert mm/dd/yyyy date
-Ctrl-f  -  Find Text
+Ctrl-c  - <i> Copy to Clipboard</i>
+Ctrl-d  -  <i>Insert mm/dd/yyyy date</i>
+Ctrl-f  -  <i>Find Text</i>
 Ctrl-h  -  Help
 Ctrl-i  -  Italic
 Ctrl-s  -  Save the current note
 Ctrl-u  -  Underline
-Ctrl-v  -  Paste from Clipboard
-Ctrl-w  -  Close this SSB window
-Sft-Tab -  outdent
-Tab     -  indent
+Ctrl-v  -  <i>Paste from Clipboard</i>
+Ctrl-w  -  <i>Close this SSB window</i>
+Sft-Tab -  <i>outdent</i>
+Tab     -  <i>indent</i>
 <strong>Mac users</strong> may have problems with the 'Alt' keys,
 and sometimes you have to use 'command' instead of
 Ctrl. There are buttons for most 'Alt' keys.
@@ -569,8 +577,8 @@ Ctrl. There are buttons for most 'Alt' keys.
 
   function printPage() {
     let txt = "";
-  	let oHTM = JS.doq("#CE");
-  	txt = oHTM.innerHTML;
+    let oHTM = JS.doq("#CE");
+    txt = oHTM.innerHTML;
     const printWindow = window.open('', '_blank', 'width=800,height=<?php echo $Opts[3]?>');
     printWindow.document.write(txt);
     printWindow.document.title = "WordScriber Printing Window";
@@ -638,85 +646,101 @@ function generateFieldSet() {
     if (color) document.execCommand('hiliteColor', false, color);
   }
 
-	function doFont() {
-	 // let fn = JS.val("#FNT");
-	 // let sz = JS.val("#SIZ");
+    function doFont() {
+     // let fn = JS.val("#FNT");
+     // let sz = JS.val("#SIZ");
     fnts = `Suggested fonts to use: Sans, Arial, Helvetica,
     Verdana, Tahoma, Serif, Georgia,
     Times New Roman, Monospace, Courier New Size 1-6`;
-	  let data = prompt(fnts, last_font);
-	  if (data == null) return;
-	  let m = data.split(",");
+      let data = prompt(fnts, last_font);
+      if (data == null) return;
+      let m = data.split(",");
     if (m[0] == "" || m[1] == "") return;
-	  document.execCommand("fontName",false, m[0]);
-	  document.execCommand("fontSize",false, m[1]);
-	  last_font = m[0] + ", " + m[1];
-	}
+      document.execCommand("fontName",false, m[0]);
+      document.execCommand("fontSize",false, m[1]);
+      last_font = m[0] + ", " + m[1];
+    }
 
-	function doColor() {
-	  let data = prompt("Enter color name for text", last_color);
-	  if (data == null) return;
+    function doColor() {
+      let data = prompt("Enter color name for text", last_color);
+      if (data == null) return;
     if (data == "") return;
     document.execCommand("foreColor",false, data);
     last_color = data;
-	}
+    }
 
-	function doLink() {
-	  let data = prompt("Enter URL to Link", "https://");
-	  if (data == null) return;
+    function doLink() {
+      let data = prompt("Enter URL to Link", "https://");
+      if (data == null) return;
     if (data == "") return;
     document.execCommand("createLink",false, data);
-	}
+    }
 
   function xfer2Ta() {
     let oHTM = JS.doq("#CE");
-  	JS.val("#TA", oHTM.innerHTML); // HTML ==> TEXT
-  	JS.tod("#TA", "block");
-  	JS.tod("#CE", "block");
-  	JS.doq("#TA").focus();
+    JS.val("#TA", oHTM.innerHTML); // HTML ==> TEXT
+    JS.tod("#TA", "block");
+    JS.tod("#CE", "block");
+    JS.doq("#TA").focus();
   }
 
   function toggleHtml() {
-  	// toggles between textarea (TA)
-  	// and contentEditable (CE)
-  	// copying text and toggling display
-  	if (JS.gss("#TA", "display") == 'none') {
-  		unCompress();
-  	} else {
-  	  let oHTM = JS.doq("#CE");
-  		oHTM.innerHTML = JS.val("#TA"); // TEXT ==> HTML
-  		JS.tod("#CE", "block");
-  		JS.tod("#TA", "block");
-  		oHTM.focus();
-  	}
+    // toggles between textarea (TA)
+    // and contentEditable (CE)
+    // copying text and toggling display
+    if (JS.gss("#TA", "display") == 'none') {
+        unCompress();
+    } else {
+      let oHTM = JS.doq("#CE");
+        oHTM.innerHTML = JS.val("#TA"); // TEXT ==> HTML
+        JS.tod("#CE", "block");
+        JS.tod("#TA", "block");
+        oHTM.focus();
+    }
+  }
+
+  function toggleWordWrap() {
+    const element = JS.doq("#CE");
+
+    if (element) {
+        const currentWhiteSpace = window.getComputedStyle(element).whiteSpace;
+
+        if (currentWhiteSpace === 'normal') {
+            element.style.whiteSpace = 'nowrap';
+        } else {
+            element.style.whiteSpace = 'normal';
+        }
+    } else {
+        console.error(`Element with id ${elementId} not found.`);
+    }
   }
 
   function fmthtml(t) {
     /* pseudo formats the HTML when switching between text and CE */
-  	t = t.replace(/<div/g, "\n<div");
-  	t = t.replace(/<br>/g, "<br>\n");
-  	t = t.replace(/<\/div>/g, "\n</div>\n");
-  	t = t.replace(/<\/blockquote>/g, "</blockquote>\n");
-  	t = t.replace(/<blockquote/g, "\n<blockquote");
-  	t = t.replace(/<\/span>/g, "</span>\n");
-  	t = t.replace(/<span/g, "\n<span");
-  	t = t.replace(/<ul/g, "\n<ul");
-  	t = t.replace(/<ol/g, "\n<ol");
-  	t = t.replace(/<\/ul>/g, "\n</ul>\n");
-  	t = t.replace(/<\/ol>/g, "\n</ol>\n");
-  	t = t.replace(/<li/g, "\n	<li");
+    t = t.replace(/<div/g, "\n<div");
+    t = t.replace(/<br>/g, "<br>\n");
+    t = t.replace(/<\/div>/g, "\n</div>\n");
+    t = t.replace(/<\/blockquote>/g, "</blockquote>\n");
+    t = t.replace(/<blockquote/g, "\n<blockquote");
+    t = t.replace(/<\/span>/g, "</span>\n");
+    t = t.replace(/<span/g, "\n<span");
+    t = t.replace(/<ul/g, "\n<ul");
+    t = t.replace(/<ol/g, "\n<ol");
+    t = t.replace(/<\/ul>/g, "\n</ul>\n");
+    t = t.replace(/<\/ol>/g, "\n</ol>\n");
+    t = t.replace(/<li/g, "\n   <li");
     t = t.replace(/\n\n/g, "\n"); // clean up extra blank lines
     t = t.replace(/  /g, ""); // clean up extra spaces lines
     t = t.replace(/\t/g, ""); // clean up extra tabs
-  	return t;
+    return t;
   }
 
   function unCompress() {
       let oHTM = JS.doq("#CE");
-  		txt = oHTM.innerHTML;
-  		txt = fmthtml(txt);
-  		oHTM.innerHTML = txt;
-  		xfer2Ta();
+        txt = oHTM.innerHTML;
+        txt = fmthtml(txt);
+        oHTM.innerHTML = txt;
+        xfer2Ta();
   }
 
   function getCategory() {
@@ -752,11 +776,11 @@ function generateFieldSet() {
     let dname = JS.val("#DOC");
     // open in browser in HTML mode
     if (JS.gss("#TA", "display") !== 'none') {
-    	let oHTM = JS.doq("#CE");
-    	let txt = oHTM.innerHTML;
-  		h = window.open();
-  		h.document.write(txt);
-  	} else { // save to database
+        let oHTM = JS.doq("#CE");
+        let txt = oHTM.innerHTML;
+        h = window.open();
+        h.document.write(txt);
+    } else { // save to database
       // Delete checked?
       if (isDelete()) {
         if (!confirm("Delete this document?\n" + dname + " " + cat)) {
@@ -768,17 +792,17 @@ function generateFieldSet() {
         return;
       }
       // Else continue with SAVE...
-    	let oHTM = JS.doq("#CE");
-    	let txt = oHTM.innerHTML;
-    	txt = encodeURIComponent(txt);
-    	JS.websend("handler.php", `cat=${cat}&nam=${dname}&txt=${txt}&action=save`);
-    	// console.log(cat, dname, txt);
-    	setsav();
-    	loStor(1, cat + "|" + dname); // store current key for new docs
-    	if (newDocument(dname)) {
-    	  window.location.reload();
-    	}
-  	}
+        let oHTM = JS.doq("#CE");
+        let txt = oHTM.innerHTML;
+        txt = encodeURIComponent(txt);
+        JS.websend("handler.php", `cat=${cat}&nam=${dname}&txt=${txt}&action=save`);
+        // console.log(cat, dname, txt);
+        setsav();
+        loStor(1, cat + "|" + dname); // store current key for new docs
+        if (newDocument(dname)) {
+          window.location.reload();
+        }
+    }
   }
 
   function load_document(dname) {
@@ -873,27 +897,27 @@ function insertHTML(html) {
 
 function insClip(itext) {
   let TAo = JS.doq("#TA");  // textarea
-	let tav = TAo.value;
-	let strPos = TAo.selectionStart;
-	let front  = tav.slice(0, strPos);
-	let back   = tav.slice(strPos);
-	TAo.value  = front + itext + back;
-	TAo.selectionEnd = strPos + itext.length;
-	TAo.focus();
+    let tav = TAo.value;
+    let strPos = TAo.selectionStart;
+    let front  = tav.slice(0, strPos);
+    let back   = tav.slice(strPos);
+    TAo.value  = front + itext + back;
+    TAo.selectionEnd = strPos + itext.length;
+    TAo.focus();
 }
 // insert a break
 document.addEventListener("keydown", function(event) {
-	if (event.keyCode === 13 && event.ctrlKey) {
-		event.preventDefault();
-		insClip("<br>");
-	}
+    if (event.keyCode === 13 && event.ctrlKey) {
+        event.preventDefault();
+        insClip("<br>");
+    }
 });
 // insert a space
 document.addEventListener("keydown", function(event) {
-	if (event.keyCode === 32 && event.ctrlKey) {
-		event.preventDefault();
-		insClip("&nbsp;");
-	}
+    if (event.keyCode === 32 && event.ctrlKey) {
+        event.preventDefault();
+        insClip("&nbsp;");
+    }
 });
 
 </script>
