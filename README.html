@@ -1,0 +1,205 @@
+
+<h1>WordScriber</h1>
+<div><br>
+
+</div>
+
+<div><i><b>
+<span class="big-text">A <u>s</u>ingle <u>s</u>ite <u>b</u>rowser application</span>
+</b>
+</i>
+</div>
+
+<div><br>
+
+</div>
+
+<div>As an SSB wordScriber's home is on the Web, but its interface is designed to run inside a single browser window, by itself. It must be implemented in its own directory somewhere on your web server. Also it should have sub-directories called <i><b>icon</b></i> and <i><b>images</b></i>. The application's icons are stored in <i><b>icons</b></i> and your document images can be stored in <i><b>images</b></i>. Your documents are stored in a database, not as individual files.&nbsp;
+<span style="font-size: 14.6667px;">There are no "</span>
+<b style="font-size: 14.6667px;">indent</b>
+<span style="font-size: 14.6667px;">" and "</span>
+<b style="font-size: 14.6667px;">outdent</b>
+<span style="font-size: 14.6667px;">" buttons. Those are handled by&nbsp;</span>
+<b style="font-size: 14.6667px;">Tab</b>
+<span style="font-size: 14.6667px;">&nbsp;and&nbsp;</span>
+<b style="font-size: 14.6667px;">Shift-Tab</b>
+<span style="font-size: 14.6667px;">&nbsp;respectively. B</span>
+
+<span style="font-size: 14.6667px;">uttons</span>
+&nbsp;show
+<span style="font-size: 14.6667px;">&nbsp;titles on hovering. Press&nbsp;</span>
+<b style="font-size: 14.6667px;">Ctrl-h</b>
+<span style="font-size: 14.6667px;">&nbsp;to see all keyboard shortcuts.</span>
+
+</div>
+
+<div><br>
+
+</div>
+
+<div><b>When selecting a document to edit&nbsp;</b>
+</div>
+
+<div>When you click "Default" or "Final" the drop-down fills with documents saved in that category. If you've selected a document, but want to save it in the other category click<b> Alt-s</b>. That will toggle to the other category. Then just save.
+</div>
+
+<div><br>
+
+</div>
+
+<div><b>To create a new document</b>&nbsp;
+</div>
+
+<div>Give it a name and a category (<i>Default</i> or <i>Final</i>). Then click Save (or Ctrl-s) when done, and it will be added to your documents.
+</div>
+
+<div><br>
+
+</div>
+
+<div><b>To delete a document</b>&nbsp;
+</div>
+
+<div>First select the document to bring it into the editor.
+</div>
+
+<div>Then check the "<i>Delete</i>" checkbox and click Save. The document will be removed.
+</div>
+
+<div><br>
+
+</div>
+
+<div><b>The managing of images</b> is controlled by a button<img class="imgbutton" src="https://michaelleidel.net/wordScriber/icons/files.png" title="manage image files" style="font-size: 11pt;">
+</div>
+
+<div>By default images are stored in the server folder called <i>images</i>.
+</div>
+
+<div>The Manage Image button will open a new window where images can be uploaded, renamed, and deleted.&nbsp;
+<span style="font-size: 14.6667px;">Another button&nbsp;</span>
+<img class="imgbutton" src="https://michaelleidel.net/wordScriber/icons/image.png" title="Insert Image" style="font-size: 11pt;">
+<span style="font-size: 14.6667px;">will insert an image, from the server, into the document.&nbsp;</span>
+
+<span style="font-size: 14.6667px;">Supply a full path to any images on your server that reside outside of this apps home directory.</span>
+
+</div>
+
+
+<div>
+<div><br>
+
+</div>
+
+</div>
+
+
+<div>
+<span style="font-size: 11pt;"><b><br>
+HTML</b></span>
+<br>
+
+</div>
+
+<div>
+<span style="font-size: 11pt;"><b><br>
+</b></span>
+
+</div>
+
+<div>
+<span style="font-size: 11pt;">Click the "HTML" button to toggle between writing mode and HTML mode.</span>
+
+</div>
+
+<div>
+<span style="font-size: 11pt;">There is some reformatting of the HTML to make it readable. WordScriber is based mostly on the <i>document.execCommand</i> function which is deprecated and may be eliminated as a web standard in the future. WordScriber already uses Javascript instead of the <i>execCommand</i> function in several places. In any case, the button</span>
+<img class="imgbutton" src="https://michaelleidel.net/wordScriber/icons/html.png" title="toggle html" style="font-size: 11pt;">
+<span style="font-size: 11pt;">&nbsp;is there to allow you to make additional adjustments to text formatting when needed.</span>
+
+</div>
+
+<div>
+
+</div>
+
+<h3>Printing</h3>
+<div>Printing does not occur directly from this app. The print button will launch your document into another window from which you can print as you would from an Internet browser (Right-Click...Print.)
+</div>
+<h3>Startup Options</h3>
+<div><table border="0" cellspacing="4" cellpadding="4">
+<tbody><tr>
+<td><h3 style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; margin: 0px;">Options</h3><label for="otf" style="color: rgb(0, 0, 0);">Text Font:&nbsp;</label>
+<span style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"></span>
+<input id="otf" type="text" name="otf" placeholder="Arial" value="Arial"><br style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"><label for="oTS" style="color: rgb(0, 0, 0);">Text Size:&nbsp;</label>
+<span style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"></span>
+<input id="oTS" type="text" size="1" name="ots" placeholder="11pt" value="11pt"><br style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"><label for="oTC" style="color: rgb(0, 0, 0);">Text Color:&nbsp;</label>
+<span style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"></span>
+<input id="oTC" type="text" size="1" name="otc" placeholder="#111" value="#016"><br style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"><label for="oTH" style="color: rgb(0, 0, 0);">Document Height:&nbsp;</label>
+<span style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"></span>
+<input id="oTH" type="text" size="2" name="oth" placeholder="240px" value="400px"><br style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"><label for="oLH" style="color: rgb(0, 0, 0);">Line Height:&nbsp;</label>
+<span style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"></span>
+<input id="oLH" type="text" size="2" name="olh" placeholder="100%" value="125%"><br style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"><label for="oBG" style="color: rgb(0, 0, 0);">Background:&nbsp;</label>
+<span style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"></span>
+<input id="oBG" type="text" size="2" name="obg" placeholder="#abc" value="#abc"><br style="color: rgb(0, 0, 0); font-family: &quot;DejaVu Sans&quot;; font-size: medium;"><input type="submit" name="options" value="Save"><br>
+</td>
+<td>Use the settings button<img class="imgbutton" src="https://michaelleidel.net/wordScriber/icons/settings.png" title="Settings (Ctrl-Alt)">or <b>Ctrl-Alt</b> keys to pop up the<br>
+Options panel. These will be the apps default settings<br>
+on startup. These settings <u>do not change</u> between<br>
+different computers and browsers.</td>
+</tr>
+</tbody></table><br>
+
+</div>
+
+<div><pre style="color: rgb(0, 0, 0); background-color: rgb(254, 254, 254);"><b>Action Keys</b>
+Alt-/ -Toggle spellcheck on / off
+Alt-; -Remove HTML formatting
+Alt-b -Insert Page Break
+Alt-e -Emojis Window
+Alt-f -Insert HTML Fieldset
+Alt-l -Lower case
+Alt-p -Print
+Alt-r -Insert Horizontal Rule
+Alt-s -Toggle Categories "Default/Final"
+Alt-t -Insert HTML table
+Alt-u -Upper CaseCtrl-Alt-Toggle Options panel
+Ctrl-a -Select All
+Ctrl-b -Bold
+Ctrl-c -Copy to Clipboard
+Ctrl-d -Insert mm/dd/yyyy date
+Ctrl-f -Find Text
+Ctrl-h -Help
+Ctrl-i -Italic
+Ctrl-s -Save the current note
+Ctrl-u -Underline
+Ctrl-v -Paste from Clipboard
+Ctrl-w -Close this SSB window
+Sft-Tab -outdent
+Tab -indent
+<strong>Mac users</strong> may have problems with the 'Alt' keys,
+and sometimes you have to use 'command' instead of
+Ctrl. There are buttons for most 'Alt' keys.</pre><pre style="color: rgb(0, 0, 0); background-color: rgb(254, 254, 254);"><hr id="null"><h2>Install as SSB
+</h2>
+<div>Several leading browsers can install a web page as a <i>Single Site Browser</i> (Web App.)
+</div>
+
+<div>Here is the button to use for Brave:
+</div>
+</pre>
+</div>
+
+<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
+<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
+<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">
+<div><pre style="color: rgb(0, 0, 0); background-color: rgb(254, 254, 254);"><div><img src="images/installAsApp.png" width="" height=""><br>
+
+</div>
+</pre>
+</div>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<div>
+</div>
