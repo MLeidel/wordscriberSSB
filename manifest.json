@@ -1,0 +1,15 @@
+{
+	"short_name": "WordScriber",
+	"name": "WordScriber",
+	"icons": [
+		{
+			"src": "idoc256.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		}
+	],
+	"start_url": "index.php",
+	"background_color": "#456888",
+	"theme_color": "#456888",
+	"display": "standalone"
+}
